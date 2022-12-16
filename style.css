@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    color: white;
+}
+
+body {
+    background-image: url(https://rlmoser99.github.io/rock-paper-scissors/img/dark_wall.png);
+    max-width: 1440px;
+    margin: 0 auto;
+}
+/* ----------------------------------- NAV BAR -------------------------------- */
+
+nav {
+    margin-top: 50px;
+    height: 100px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Rubik 80s Fade', cursive;
+    color: #0096c7;
+    font-size: 4rem;
+    letter-spacing: 2px;
+}
+
+
+/* ----------------------------------- Users BAR -------------------------------- */
+
+#users {
+    height: 100px;
+    width: auto;
+    display: flex;
+    align-items: flex-end;
+}
+
+#users div {
+    flex: 1;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Rubik Vinyl', cursive;
+}
+
+
+/* ----------------------------------- Score -------------------------------- */
+#score {
+    margin-top: 2rem;
+    width: auto;
+    display: flex;
+}
+
+#score div {
+    flex: 1;
+    text-align: center;
+    font-size: 2rem;
+    color: #ffc300;
+}
+
+
+/* ----------------------------------- Playboard ------------------------------ */
+#image {
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 200px;
+    width: 1100px;
+    border-radius: 10px;
+    background-color: #314158;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+#image div {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+#image div button {
+    background-color: #f5ebe0;
+    height: 10rem;
+    width: 13rem;
+    border-radius: 10px;
+}
+
+img {
+    height: 150px;
+}
