@@ -1,34 +1,7 @@
 /**
- * The function getComputerChoice() returns a random choice from the array choices.
- * @returns The computer's choice.
+ Rule Validator of the game.
  */
-function getComputerChoice() {
-    const choices = ['rock', 'paper', 'scissor'];
-    const selection = Math.floor(Math.random() *choices.length);
-    return choices[selection];
-}
-
-/**
- * It prompts the user to select from rock, paper, or scissors, and returns the selection in lowercase.
- * @returns The player's selection.
- */
-function playerChoice() {
-    const selection = prompt('Select from: Rock, Paper, Scissor');
-    return selection.toLowerCase();
-}
-
-/**
- * If the player's selection is paper and the computer's selection is rock, the player wins. If the
- * player's selection is scissor and the computer's selection is paper, the player wins. If the
- * player's selection is rock and the computer's selection is scissor, the player wins. If the
- * computer's selection is paper and the player's selection is rock, the player loses. If the
- * computer's selection is scissor and the player's selection is paper, the player loses. If the
- * computer's selection is rock and the player's selection is scissor, the player loses.
- * @param playerSelection - The player's choice of rock, paper, or scissors.
- * @param computerSelection - a string that is either 'rock', 'paper', or 'scissors'
- * @returns The result of the game.
- */
-function playRound(playerSelection, computerSelection) {
+ function playRound(playerSelection, computerSelection) {
     if (playerSelection === 'paper' && computerSelection === 'rock') {
         return 'You Win! Paper beats Rock';
     }
@@ -52,51 +25,62 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
+
 /**
- * The game function is a while loop that runs until either the player or the computer reaches 5
- * points. 
- * 
- * The game function calls the playerChoice function to get the player's choice, and the
- * getComputerChoice function to get the computer's choice. 
- * 
- * The game function then calls the playRound function to determine the winner of the round. 
- * 
- * The game function then increments the counter for the winner of the round. 
- * 
- * The game function then prints the result of the round. 
- * 
- * The game function then repeats the while loop until either the player or the computer reaches 5
- * points. 
- * 
- * The game function then returns 0.
- * @returns the value of 0.
+The computer's choice.
  */
-function game() {
-    let counterPlayer = 0;
-    let counterComputer = 0;
-
-    while (true) {
-        if (counterPlayer === 5) {
-            console.log('You Win!');
-            break;
-        } 
-        else if ( counterComputer === 5) {
-            console.log('You Lose!');
-            break
-        }
-        else {
-            let playerSel = playerChoice();
-            let compSel = getComputerChoice();
-
-            let res = playRound(playerSel, compSel);
-            if (res.includes('Lose!')) {
-                counterComputer++;
-            }
-            else if (res.includes('Win!')) {
-                counterPlayer++;
-            }
-            console.log(res);
-        }
-    }
-    return 0;
+function getComputerChoice() {
+    const choices = ['rock', 'paper', 'scissor'];
+    const selection = Math.floor(Math.random() *choices.length);
+    return choices[selection];
 }
+
+
+
+let playerChoice;
+let playersScore = 0;
+let compScore = 0;
+let rounds = 0;
+
+let h3 = document.querySelector('h3');
+let scoreUpdate = document.querySelectorAll('#score div');
+
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        
+        checkWinner();
+        rounds++;
+        playerChoice = btn.id;
+        const compChoice = getComputerChoice();
+
+        const res = playRound(playerChoice, compChoice);
+        if (res.includes('Lose!')) {
+            h3.textContent = res;
+            compScore++;
+            scoreUpdate[0].textContent = `Score: ${compScore}`;
+        }
+        else if (res.includes('Win!')) {
+            h3.textContent = res;
+            playersScore++;
+            scoreUpdate[1].textContent = `Score: ${playersScore}`;
+        }
+        h3.textContent = res;
+    })
+})
+
+
+
+function checkWinner() {
+    if (compScore === 5) {
+        alert('Computer has kicked your ASS!');
+        location.reload();
+    } else if (playersScore === 5) {
+        alert('You are a WINNER!');
+        location.reload();
+    }
+}
+
+
